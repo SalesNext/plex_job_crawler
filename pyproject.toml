@@ -1,0 +1,22 @@
+[project]
+name = "plex-job-crawler"
+version = "0.1.0"
+description = ""
+authors = [{ name = "hai-pham-theinfitech", email = "hai_phamn@theinfitech.com" }]
+requires-python = ">=3.9.16"
+dependencies = [
+    "salesnext-crawler",
+]
+
+[tool.uv.sources]
+salesnext-crawler = { git = "ssh://git@github.com/SalesNext/salesnext-crawler.git", branch = "event" }
+
+[tool.uv]
+dev-dependencies = [
+    "ipykernel>=6.29.5",
+]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

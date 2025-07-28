@@ -1,0 +1,63 @@
+[engine]
+    type = "scrapy"
+
+[engine.settings]
+LOG_LEVEL = 'INFO'
+CONCURRENT_REQUESTS = 4
+DOWNLOAD_DELAY = 1
+PROXIES = [
+
+] 
+
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+
+[engine.settings.DOWNLOADER_MIDDLEWARES]
+
+
+[engine.settings.DOWNLOAD_HANDLERS]
+
+
+[filesystems]
+
+[filesystems.local]
+type = 'LocalFileSystem'
+
+# List of storages
+[storages]
+
+[storages.recruit]
+type = 'pyarrow'
+format = 'parquet'
+filesystem = 'local'
+path = 'data/{crawler_id}/recruit/{chunk}.parquet'
+chunk_size = 1000
+
+[storages.company]
+type = 'pyarrow'
+format = 'parquet'
+filesystem = 'local'
+path = 'data/{crawler_id}/company/{chunk}.parquet'
+chunk_size = 1000
+
+[readers]
+
+[readers.phone_table]
+type = 'pyarrow'
+format = 'csv'
+filesystem = 'local'
+path = 'phone_table/*.csv'
+
+[readers.master_company_table]
+type = 'pyarrow'
+format = 'csv'
+filesystem = 'local'
+path = 'master_company_table/*.csv'
+
+[readers.master_phone_table]
+type = 'pyarrow'
+format = 'csv'
+filesystem = 'local'
+path = 'master_phone_table/*.csv'
+
+[crawler]
+classname = 'plex_job_crawler.plex_job_crawler.PlexJobCrawler'
