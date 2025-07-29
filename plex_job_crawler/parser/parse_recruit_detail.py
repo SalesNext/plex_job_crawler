@@ -35,7 +35,7 @@ def parse_recruit_detail(
     job_company_region = json_data.get('jobLocation', {}).get('address', {}).get('addressRegion', ''),
     job_company_locality = json_data.get('jobLocation', {}).get('address', {}).get('addressLocality', ''),
     job_address_street = json_data.get('jobLocation', {}).get('address', {}).get('streetAddress', ''),
-    
+    job_description = next_data_json.get('props', {}).get('pageProps', {}).get('data', {}).get('jobDetail', {}).get('jobDescriptionOption', None),
     job_company_postal_code = json_data.get('jobLocation', {}).get('address', {}).get('postalCode', ''),
     job_salary_unit = json_data.get('baseSalary', {}).get('value', {}).get('unitText', ''),
     job_max_salary = str(json_data.get('baseSalary', {}).get('value', {}).get('maxValue', '')),

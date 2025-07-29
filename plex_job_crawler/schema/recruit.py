@@ -19,6 +19,7 @@ class Recruit(BaseModel):
     job_employment_type: Optional[str] = None
     job_working_hour: Optional[str] = None
     job_benefit : Optional[str] = None
+    job_description : Optional[str] = None
     job_company_name : Optional[str] = None
     job_company_country : Optional[str] = None
     job_company_region : Optional[str] = None
