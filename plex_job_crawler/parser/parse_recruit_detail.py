@@ -45,7 +45,11 @@ def parse_recruit_detail(
     job_holiday = next_data_json.get('props', {}).get('pageProps', {}).get('data', {}).get('jobDetail', {}).get('holidayOption', None),
     job_requirement = next_data_json.get('props', {}).get('pageProps', {}).get('data', {}).get('jobDetail', {}).get('qualificationOption', None),
     job_welfare = next_data_json.get('props', {}).get('pageProps', {}).get('data', {}).get('jobDetail', {}).get('welfareOption', None),
-    job_industry = next_data_json.get('props', {}).get('pageProps', {}).get('data', {}).get('jobDetail', {}).get('occupation', {}).get('name', None),
+    job_industry = next_data_json.get('props', {}) \
+    .get('pageProps', {}) \
+    .get('data', {}) \
+    .get('occupation', {}) \
+    .get('name', None)   
     )
     features = next_data_json.get('props', {}).get('pageProps', {}).get('data', {}).get('features', [])
     feat = []

@@ -4,7 +4,7 @@ from typing import Optional
 class Company(BaseModel):
     company_id: Optional[str] = None
     company_url: Optional[str] = None
-    compamy_name: Optional[str] = None  
+    company_name: Optional[str] = None  
     company_address: Optional[str] = None
     company_capital: Optional[str] = None
     company_employee_count: Optional[str] = None
