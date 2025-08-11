@@ -20,8 +20,8 @@ def parse_recruit_category(
         category_id = category.split("/")[-2]
         url = urljoin(response.url, category)
         
-        if url == 'https://www.plex-job.com/driver/':
-            continue
+        # if url == 'https://www.plex-job.com/driver/':
+        #     continue
         yield CrawlEvent(
             request = Request(url),
             metadata= {'crawled_recruit_ids': event.metadata.get('crawled_recruit_ids', []), 'crawled_company_ids': event.metadata.get('crawled_company_ids', []), 'category_id': category_id},

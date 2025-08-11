@@ -4,7 +4,7 @@ from urllib.parse import urljoin
 from salesnext_crawler.events import CrawlEvent, DataEvent, Event
 from scrapy.http.response.html import HtmlResponse
 from scrapy import Request
-
+from urllib.parse import urljoin
 import re
 from pydantic import BaseModel
 
@@ -15,15 +15,16 @@ def parse_recruit_list(
     response: HtmlResponse,
 ) -> Iterable[Event]:
     
-    pages = response.xpath("//a[@class='h-full w-full p-sm inline-block text-center text-sm']/text()").getall()
-    if pages:
-        max_page = pages[-1]
-        for page in range(2, int(max_page) +1):
-            yield CrawlEvent(
-                request=Request(f"{response.url}?page={page}"),
-                metadata= event.metadata,
-                callback=parse_recruit_list,
-            )
+    next_page = response.xpath("//a[@aria-label = 'Next page']/@href").get()
+    
+    url = re.sub(r"\?page=\d+", "", response.url)
+    print(urljoin(url, next_page))
+    if next_page:
+        yield CrawlEvent(
+            request = Request(urljoin(url, next_page)),
+            metadata = event.metadata,
+            callback = parse_recruit_list,
+        )
     blocks = response.xpath("//div[@class='p-md lg:p-lg']")
     urls = []
     for block in blocks:
