@@ -66,7 +66,7 @@ def parse_recruit_detail(
     company = Company(
     company_id = company_data.get('id', None),
     company_url = urljoin(response.url, company_url),
-    company_address = company_data.get('addressLine', None),
+    company_address = response.xpath('//a[contains(@href, "https://www.google.com/maps/search/?api")]/text()').getall()[-1],
     company_name = company_data.get('name', None),
     company_capital = company_capital or None,
     company_employee_count = (company_data.get('companyDetail') or {}).get('employeeNumber'),
